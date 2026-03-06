@@ -1,0 +1,11 @@
+# Require encryption for all S3 buckets
+# Enforcement Level: hard-mandatory
+
+import "tfplan/v2" as tfplan
+
+main = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type is not "aws_s3_bucket" or
+    rc.change.after.server_side_encryption_configuration is not null
+  }
+}

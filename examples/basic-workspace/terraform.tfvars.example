@@ -1,0 +1,9 @@
+# Example terraform.tfvars
+# Copy this file to terraform.tfvars and fill in your values
+
+# Project and Environment
+project_name = "my-application"
+environment  = "dev"
+
+# AWS Configuration (optional, defaults to us-east-1)
+aws_region = "us-east-1"

@@ -1,0 +1,14 @@
+# Enforce required tags on all resources
+# Enforcement Level: hard-mandatory
+
+import "tfplan/v2" as tfplan
+
+required_tags = ["Environment", "Project", "Owner"]
+
+main = rule {
+  all tfplan.resource_changes as _, rc {
+    all required_tags as tag {
+      rc.change.after.tags[tag] else null is not null
+    }
+  }
+}
